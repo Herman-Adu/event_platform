@@ -29,18 +29,18 @@ export async function POST(request: Request) {
         const { id, amount_total, metadata } = event.data.object
 
    
-    const order = {
-      stripeId: id,
-      eventId: metadata?.eventId || '',
-      buyerId: metadata?.buyerId || '',
-      totalAmount: amount_total ? (amount_total / 100).toString() : '0',
-      createdAt: new Date(),
-    }
+      const order = {
+        stripeId: id,
+        eventId: metadata?.eventId || '',
+        buyerId: metadata?.buyerId || '',
+        totalAmount: amount_total ? (amount_total / 100).toString() : '0',
+        createdAt: new Date(),
+      }
 
-    // pass it to the createOrder action
-    const newOrder = await createOrder(order)
-    return NextResponse.json({ message: 'OK', order: newOrder })
-  }
+      // pass it to the createOrder action
+      const newOrder = await createOrder(order)
+      return NextResponse.json({ message: 'OK', order: newOrder })
+    }
 
   return new Response('', { status: 200 })
 }

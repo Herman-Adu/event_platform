@@ -12,7 +12,7 @@ const CheckoutButton = ({ event }: { event: IEvent}) => {
     const { user } = useUser();
     const userId = user?.publicMetadata.userId as string;
 
-    // check if event has not finished
+    // check if event has not finished - cannot buy past events
     const hasEventFinished = new Date(event.endDateTime) < new Date();
 
     return (
@@ -33,9 +33,7 @@ const CheckoutButton = ({ event }: { event: IEvent}) => {
                         <Checkout event={event} userId={userId} />
                     </SignedIn>
                 </>
-            )
-
-            }
+            )}
         </div>
     )
 }
